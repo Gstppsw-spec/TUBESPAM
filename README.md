@@ -11,7 +11,7 @@ Aplikasi produk sederhana dimana aplikasi dapat menampilkan daftar suatu produk 
       npm install axios  
       npm install react-native-paper
 ```      
-## Menjalankan Aplikasi Melalui Code Program GitHub
+### Menjalankan Aplikasi Melalui Code Program GitHub
 1. clone code program dari github 
 2. tambahkan modul-modul pada prerequisites kedalam folder aplikasi
 3. jalankan aplikasi dengan command " npm start atau expo start "
