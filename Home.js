@@ -11,6 +11,11 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import apiCall from "./ApiActionCreator";
 import { Card } from "react-native-paper";
+import { Appbar } from "react-native-paper";
+import { Platform } from "react-native";
+
+const MORE_ICON =
+  Platform.OS === "android" ? "dots-horizontal" : "dots-vertical";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,7 +26,12 @@ const Home = () => {
   }, []);
 
   return (
-    <View style={{backgroundColor:'#dce3f0'}}>
+    <View style={{ backgroundColor: "#dce3f0" }}>
+      <Appbar.Header>
+        <Appbar.Content title="TokoKu" subtitle={"Tubes PAM"} />
+        <Appbar.Action icon="magnify" onPress={() => {}} />
+        <Appbar.Action icon={MORE_ICON} onPress={() => {}} />
+      </Appbar.Header>
       {loading ? (
         <ActivityIndicator size="large" color="red" />
       ) : (
@@ -29,16 +39,23 @@ const Home = () => {
           data={data}
           renderItem={({ item }) => (
             <Card
-              style={{ margin: 5, backgroundColor: "white", borderRadius: 3 }}
+                style={{ margin: 5, backgroundColor: "white", borderRadius: 3 }}
             >
-              <Text style={{ fontWeight: "bold", textAlign: 'center' , fontSize: 20}}>{item.title}</Text>
-              {/* <Card.Title
-                title={item.title}
-                style={{margin:10}}
-              /> */}
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  fontSize: 20,
+                  padding: 10,
+                }}
+              >
+                {item.title}
+              </Text>
               <View style={{ margin: 10 }}>
                 <Card.Cover source={{ uri: item.image }} />
-                <Text style={{color:'red'}}>Price : {item.price} $</Text>
+                <Text style={{ color: "red" }}>Price : {item.price} $</Text>
+                <Text>Rating : {item.rating.rate}</Text>
+                <Text>Jumlah : {item.rating.count}</Text>
                 <Text>Description : {item.description}</Text>
               </View>
             </Card>
