@@ -21,31 +21,52 @@ const Home = () => {
   }, []);
 
   return (
-    <View style={{backgroundColor:'#dce3f0'}}>
-      {loading ? (
-        <ActivityIndicator size="large" color="red" />
-      ) : (
-        <FlatList
-          data={data}
-          renderItem={({ item }) => (
-            <Card
-              style={{ margin: 5, backgroundColor: "white", borderRadius: 3 }}
-            >
-              <Text style={{ fontWeight: "bold", textAlign: 'center' , fontSize: 20}}>{item.title}</Text>
-              {/* <Card.Title
-                title={item.title}
-                style={{margin:10}}
-              /> */}
-              <View style={{ margin: 10 }}>
-                <Card.Cover source={{ uri: item.image }} />
-                <Text style={{color:'red'}}>Price : {item.price} $</Text>
-                <Text>Description : {item.description}</Text>
-              </View>
-            </Card>
-          )}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      )}
+    <View style={{ backgroundColor: 'white' }}>
+      <View style={{ backgroundColor: "black", borderBottomWidth: 1, borderColor:'lightgray' }}>
+        <Text style={{ color: 'white', fontWeight: '700', padding: '5%', fontSize:'130%' }}> Products</Text>
+      </View>
+
+  
+
+      <ScrollView>
+
+        {loading ? (
+          <ActivityIndicator size="large" color="red" />
+        ) : (
+          <FlatList
+            data={data}
+            renderItem={({ item }) => (
+              <Card
+                style={{
+                  marginLeft: "3.5%",
+                  marginTop: "4%",
+                  backgroundColor: "white",
+                  borderRadius: 8,
+                  width: "45%",
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 2
+                  },
+                  shadowOpacity: 0.25,
+                  shadowRadius: 4
+                }}
+              >
+
+                <View style={{ margin: 10 }}>
+                  <Card.Cover source={{ uri: item.image }} style={{  }} />
+                  <Text style={{ fontWeight: '700', fontSize: '120%', marginTop: '7%' }}>$ {item.price} </Text>
+                  <Text style={{ fontWeight: '500', fontSize: '100%' }}>{item.title}</Text>
+                </View>
+
+              </Card>
+            )}
+            ItemSeparatorComponent={() => <ScrollView> </ScrollView>}
+            numColumns={2}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        )}
+      </ScrollView>
     </View>
   );
 };
